@@ -1,24 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import { GlobalProvider } from './state/GlobalState';
+import { Home } from './components/Home';
+import { AddProduct } from './components/AddProduct';
+import { EditProduct } from './components/EditProduct';
+import { ViewProduct } from './components/ViewProduct';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalProvider>
+      <div className="App">
+        <Switch>
+          <Route path="/" component={Home} exact />
+          <Route path="/add" component={AddProduct} exact />
+          <Route path="/edit/:id" component={EditProduct} exact />
+          <Route path="/view/:id" component={ViewProduct} exact />
+        </Switch>
+      </div>
+    </GlobalProvider>
   );
 }
 
